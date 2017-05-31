@@ -41,14 +41,18 @@ In order to draw a single line on the left and right lanes, I modified the draw_
 
 If you'd like to include images to show how the pipeline works, here is how to include an image: 
 
-solidWhiteCurve.jpg
+### **solidWhiteCurve.jpg**
 ![solidWhiteCurve.jpg](./test_images_output/solidWhiteCurve.jpg)
-
+### **solidWhiteRight.jpg**
 ![solidWhiteRight.jpg](./test_images_output/solidWhiteRight.jpg)
+### **solidYellowCurve.jpg**
 ![solidYellowCurve.jpg](./test_images_output/solidYellowCurve.jpg)
+### **solidYellowCurve2.jpg**
 ![solidYellowCurve2.jpg](./test_images_output/solidYellowCurve2.jpg)
-![solidYellowLeft.jpg](./test_image_output/solidYellowLeft.jpg)
-![whiteCarLaneSwitch.jpg](./test_image_output/whiteCarLaneSwitch.jpg)
+### **solidYellowLeft**
+![solidYellowLeft.jpg](./test_images_output/solidYellowLeft.jpg)
+### **whiteCarLaneSwitch.jpg**
+![whiteCarLaneSwitch.jpg](./test_images_output/whiteCarLaneSwitch.jpg)
 
 
 ### 2. Identify potential shortcomings with your current pipeline
