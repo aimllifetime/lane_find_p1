@@ -23,25 +23,25 @@ The goals / steps of this project are the following:
 
 ### 1. Describe your pipeline. As part of the description, explain how you modified the draw_lines() function.
 
-My pipeline is defined in function: process_image_in which consisted of 6 steps
-  *1. converted the images to grayscale,
-  *2. call the gaussian_blur with kernel_size = 3
-  *3. then call the canny function to find the all the edges, with low_threhold = 50 and high_threhold = 150
-  *4. defines the 4 vertices to define the region of interest, and then apply the region to the image returned by canny
-  *5. Use the hough_lines to detects all the lines with following paramters:
+My pipeline is defined in function: process_image_in which consisted of 6 steps:
+  * converted the images to grayscale,
+  * call the gaussian_blur with kernel_size = 3
+  * then call the canny function to find the all the edges, with low_threhold = 50 and high_threhold = 150
+  * defines the 4 vertices to define the region of interest, and then apply the region to the image returned by canny
+  * Use the hough_lines to detects all the lines with following paramters:
       * rho = 1
       * theta = np.pi/180
       * threshold = 15
       * min_line_length = 40
       * max_line_gap = 20
       
-  *6. call the image draw function _weighted_img_    
+  * call the image draw function _weighted_img_    
 
 In order to draw a single line on the left and right lanes, I modified the draw_lines() function by ...
 
 If you'd like to include images to show how the pipeline works, here is how to include an image: 
 
-![solidWhiteCurve.jpg][./test_images_output/solidWhiteCurve.jpg]
+![solidWhiteCurve.jpg](./test_images_output/solidWhiteCurve.jpg)
 ![alt text][image1]
 ![alt text][image1]
 ![alt text][image1]
