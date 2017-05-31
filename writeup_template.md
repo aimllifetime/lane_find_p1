@@ -72,7 +72,7 @@ Following are the output image of test images:
 ### **whiteCarLaneSwitch.jpg**
 ![whiteCarLaneSwitch.jpg](./test_images_output/whiteCarLaneSwitch.jpg)
 
-######The video output is at:
+###### The video output is at:
 ### [test_videos_output](./test_videos_output)
 
 
@@ -91,3 +91,5 @@ Also a linearregression model was tried to fit the points to draw a better line,
 A possible improvement would be try to use other curve and line fit algorithm to get closer and smooth line draw.
 
 Another potential improvement could be to dynamically find the region of interests when detect lanes. currently the fixed region does not work for all conditions and need to manually to change them for new curve road condition.
+
+Tried out challenge.mp4, there is lots of room to improve the pipeline since the drawed lane is not always on lanes.
