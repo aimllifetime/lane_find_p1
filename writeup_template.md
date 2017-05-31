@@ -25,10 +25,10 @@ The goals / steps of this project are the following:
 
 My pipeline is defined in function: process_image_in which consisted of 6 steps:
   * converted the images to grayscale,
-  * call the gaussian_blur with kernel_size = 3
-  * then call the canny function to find the all the edges, with low_threhold = 50 and high_threhold = 150
-  * defines the 4 vertices to define the region of interest, and then apply the region to the image returned by canny
-  * Use the hough_lines to detects all the lines with following paramters:
+  * call the _gaussian_blur_ with _kernel_size_ = 3
+  * then call the _canny_ function to find all edges, with _low_threhold_ = 50 and _high_threhold_ = 150
+  * defines the 4 vertices for region of interest, and then apply the region to the image returned by _canny_
+  * Use the _hough_lines_ to detects all the lines with following paramters:
       * rho = 1
       * theta = np.pi/180
       * threshold = 15
@@ -37,20 +37,38 @@ My pipeline is defined in function: process_image_in which consisted of 6 steps:
       
   * call the image draw function _weighted_img_    
 
-In order to draw a single line on the left and right lanes, I modified the draw_lines() function by ...
+#### drawing single line on left and right lanes:
+In order to draw a single line on the left and right lanes, a function _extrpo_v2_ is created to return the four vertices. then the **_draw_lines_** takes these four vertices and draw on image.
 
-If you'd like to include images to show how the pipeline works, here is how to include an image: 
+The four vertices are calaculated in **_extrapo_v2_** function:
+    * first use slope _w = -(y2-y1)/(x2-x1)_ to calculate the slope. Note here minus is used because I am used to negative y below x axis and makes the caculation map to math function easily.
+    * calculate the line _length = (x2-x1)**2 + (y2-y1)**2_
+    * slope w < 0  belongs to left lane, caculate the offset b to origin
+    * slope w > 0 belongs to right line, caculate the offset b to origin
+    * only count the lines that length is > 5000
+    * average the slope w and offest b
+    * given the lane top and bottom, caculate the lefe lane's two ends
+    * given the lane top and bottom, caculate the right lane's two ends
+    * return the four vertices for the draw_line to draw.
+
+
+Following are the output image of test images:
 
 ### **solidWhiteCurve.jpg**
 ![solidWhiteCurve.jpg](./test_images_output/solidWhiteCurve.jpg)
+
 ### **solidWhiteRight.jpg**
 ![solidWhiteRight.jpg](./test_images_output/solidWhiteRight.jpg)
+
 ### **solidYellowCurve.jpg**
 ![solidYellowCurve.jpg](./test_images_output/solidYellowCurve.jpg)
+
 ### **solidYellowCurve2.jpg**
 ![solidYellowCurve2.jpg](./test_images_output/solidYellowCurve2.jpg)
+
 ### **solidYellowLeft**
 ![solidYellowLeft.jpg](./test_images_output/solidYellowLeft.jpg)
+
 ### **whiteCarLaneSwitch.jpg**
 ![whiteCarLaneSwitch.jpg](./test_images_output/whiteCarLaneSwitch.jpg)
 
@@ -58,13 +76,15 @@ If you'd like to include images to show how the pipeline works, here is how to i
 ### 2. Identify potential shortcomings with your current pipeline
 
 
-One potential shortcoming would be what would happen when ... 
+One potential shortcoming would be what would happen when there some images has scattered lines out side of left/right lanes can cause the w and b not so smooth such as the drawed lines does not land properly on the lane.
 
-Another shortcoming could be ...
+secondly, if the line length 5000 defined in extrpo_v2 could skip certain image. it can be set to lower value to count for all images but will run into above first issue
+
+Also a linearregression model was tried to fit the points to draw a better line, but it seems not working as expected. 
 
 
 ### 3. Suggest possible improvements to your pipeline
 
-A possible improvement would be to ...
+A possible improvement would be try to use curve and line fit algorithm to get closer line draw.
 
-Another potential improvement could be to ...
+Another potential improvement could be to dynamically find the region of interests when detect lanes. currently the fixed region does not work for all condition and need to manually to change them for new road condition.
